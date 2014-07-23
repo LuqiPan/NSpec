@@ -2,12 +2,22 @@ require 'treetop'
 require 'pry'
 Treetop.load 'NSpec'
 
+shared_examples "an AST" do
+  it 'is a SyntaxNode' do
+    result = parser.parse(subject)
+    expect(result).to be_a(Treetop::Runtime::SyntaxNode)
+  end
+end
+
 describe NSpec do
   let(:parser) { NSpecParser.new }
+  let(:sentence) { 'not gonna happen' }
 
-  it 'parse the sentence with white spaces' do
-    result = parser.parse('expect (it) to be equal 5')
-    expect(result).to be_a(Treetop::Runtime::SyntaxNode)
+  describe 'parse the sentence with white spaces' do
+    subject { 'expect (it) to be equal 5' }
+    it_behaves_like 'an AST'
+    #result = parser.parse('expect (it) to be equal 5')
+    #expect(result).to be_a(Treetop::Runtime::SyntaxNode)
   end
 
   it 'parse the sentence with not' do
