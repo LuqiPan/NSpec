@@ -14,6 +14,16 @@ describe NSpec do
   let(:sentence) { 'not gonna happen' }
 
   describe 'parse the sentence' do
+    pairs = [['with white spaces', 'expect (it) to be equal 5']]
+    pairs.each do |pair|
+      context pair[0] do
+        subject { pair[1] }
+        it_behaves_like 'an accepted sentence'
+      end
+    end
+  end
+
+  describe 'parse the sentence' do
     context 'with white spaces' do
       subject { 'expect (it) to be equal 5' }
       it_behaves_like 'an accepted sentence'
