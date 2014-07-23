@@ -17,8 +17,6 @@ describe NSpec do
     context 'with white spaces' do
       subject { 'expect (it) to be equal 5' }
       it_behaves_like 'an accepted sentence'
-      #result = parser.parse('expect (it) to be equal 5')
-      #expect(result).to be_a(Treetop::Runtime::SyntaxNode)
     end
 
     it 'parse the sentence with not' do
