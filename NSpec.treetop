@@ -1,7 +1,7 @@
 grammar NSpec
   # Top level rule
   rule expect
-    'expect' S parens S to S match_statement S something
+    'expect' OS parens OS to OS match_statement OS something
   end
 
   rule something
@@ -9,15 +9,19 @@ grammar NSpec
   end
 
   rule parens
-    S '(' parens ')' S / variable
+    '(' parens ')' / variable
   end
 
-  rule S #white spaces
+  rule OS #optional space
     [ \t]*
   end
 
+  rule S #white spaces
+    [ \t]+
+  end
+
   rule optional_not
-    ('not' S)?
+    ('not' OS)?
   end
 
   rule to
@@ -25,7 +29,7 @@ grammar NSpec
   end
 
   rule optional_be
-    ('be' S)?
+    ('be' OS)?
   end
 
   rule match_statement
