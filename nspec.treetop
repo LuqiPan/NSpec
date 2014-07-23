@@ -1,6 +1,6 @@
 grammar NSpec
   rule expect
-    'expect' parens to match_statement numbers
+    'expect' S parens S to S match_statement S numbers
   end
 
   rule parens
@@ -11,20 +11,24 @@ grammar NSpec
     [a-zA-Z]+
   end
 
-  rule S
+  rule S #white spaces
     [ \t]*
   end
 
-  rule to
-    ('not')? S 'to' S
+  rule optional_not
+    ('not' S)?
   end
 
-  rule be
-    'be'?
+  rule to
+    optional_not 'to'
+  end
+
+  rule optional_be
+    ('be' S)?
   end
 
   rule match_statement
-    S be S matcher ' '
+    optional_be matcher ' '
   end
 
   rule matcher
