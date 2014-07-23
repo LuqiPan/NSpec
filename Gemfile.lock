@@ -9,7 +9,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rake (10.3.2)
     rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.3)
@@ -27,7 +26,6 @@ PLATFORMS
 
 DEPENDENCIES
   pry
-  rake
   rspec-core
   rspec-expectations
   rspec-mocks

@@ -1,5 +1,23 @@
 grammar NSpec
-  rule hello
-    'hello'
+  rule expect
+    'expect' parens to matchers
+  end
+
+  rule parens
+    '(' parens ')' / word
+  end
+
+  rule word
+    [a-zA-Z]+
+  end
+
+  rule to
+    [ \t]* 'to' [ \t]*
+  end
+
+  rule matchers
+  end
+  rule problems
+    word &{ |s| binding.pry; true }
   end
 end
