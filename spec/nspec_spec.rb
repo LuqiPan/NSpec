@@ -1,5 +1,6 @@
 require 'treetop'
 require 'pry'
+require 'spec_helper'
 Treetop.load 'NSpec'
 
 shared_examples "an accepted sentence" do
