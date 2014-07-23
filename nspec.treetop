@@ -1,14 +1,14 @@
 grammar NSpec
   rule expect
-    'expect' S parens S to S match_statement S numbers
+    'expect' S parens S to S match_statement S something
+  end
+
+  rule something
+    variable / numbers
   end
 
   rule parens
-    S '(' parens ')' S / word
-  end
-
-  rule word
-    [a-zA-Z]+
+    S '(' parens ')' S / variable
   end
 
   rule S #white spaces
@@ -37,6 +37,14 @@ grammar NSpec
 
   rule numbers
     [0-9]+
+  end
+
+  rule characters
+    [a-zA-Z_]+
+  end
+
+  rule variable
+    characters+ (numbers/numbers)*
   end
 
   rule problems
