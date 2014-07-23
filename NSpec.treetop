@@ -1,15 +1,19 @@
 grammar NSpec
   # Top level rule
   rule expect
-    'expect' OS parens OS to S match_statement S something
-  end
-
-  rule something
-    variable / numbers
+    'expect' OS parens OS to S match_statement S expected
   end
 
   rule parens
-    '(' parens ')' / variable
+    '(' parens ')' / actual
+  end
+
+  rule actual
+    variable / numbers
+  end
+
+  rule expected
+    variable / numbers
   end
 
   rule OS #optional space

@@ -30,7 +30,8 @@ describe NSpec do
     ]
     without_pairs = [
       ['without be', 'expect (it) not to equal 5'],
-      ['without space after expect', 'expect(it) to eq 5']
+      ['without space after expect', 'expect(it) to eq 5'],
+      ['without space after actual', 'expect(it)to eq 5']
     ]
     (with_pairs + without_pairs).each do |pair|
       context pair[0] do
