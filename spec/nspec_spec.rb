@@ -9,12 +9,25 @@ shared_examples "an accepted sentence" do
   end
 end
 
+shared_examples "a unaccepted sentence" do
+  it 'is not a SyntaxNode' do
+    result = parser.parse(subject)
+    expect(result).to be_nil
+  end
+end
+
 describe NSpec do
   let(:parser) { NSpecParser.new }
-  let(:sentence) { 'not gonna happen' }
 
   describe 'parse the sentence' do
-    pairs = [['with white spaces', 'expect (it) to be equal 5']]
+    pairs = [
+      ['with white spaces', 'expect (it) to be equal 5'],
+      ['with not', 'expect (it) not to be equal 5'],
+      ['without be', 'expect (it) not to equal 5'],
+      ['with variable containing underscore', 'expect (var_) to be equal something'],
+      ['with variable containing number', 'expect (var1) to be equal something'],
+      ['with variable containing both underscore and number', 'expect (var_1) to be equal s']
+    ]
     pairs.each do |pair|
       context pair[0] do
         subject { pair[1] }
@@ -23,35 +36,15 @@ describe NSpec do
     end
   end
 
-  describe 'parse the sentence' do
-    context 'with white spaces' do
-      subject { 'expect (it) to be equal 5' }
-      it_behaves_like 'an accepted sentence'
-    end
-
-    it 'parse the sentence with not' do
-      result = parser.parse('expect (it) not to be equal 5')
-      expect(result).to be_a(Treetop::Runtime::SyntaxNode)
-    end
-
-    it 'be can be optional' do
-      result = parser.parse('expect (it) not to equal 5')
-      expect(result).to be_a(Treetop::Runtime::SyntaxNode)
-    end
-
-    it "doesn't parse 2 'not's" do
-      result = parser.parse('expect (it) not not to be equal 5')
-      expect(result).to be_nil
-    end
-
-    it 'also works with variable with underscore' do
-      result = parser.parse('expect (var_) to be equal something')
-      expect(result).to be_a(Treetop::Runtime::SyntaxNode)
-    end
-
-    it 'also works with variable with number' do
-      result = parser.parse('expect (var1) to be equal something')
-      expect(result).to be_a(Treetop::Runtime::SyntaxNode)
+  describe "doesn't parse the sentence" do
+    pairs = [
+      ['with 2 nots', 'expect (it) not not to be equal 5']
+    ]
+    pairs.each do |pair|
+      context pair[0] do
+        subject { pair[1] }
+        it_behaves_like 'a unaccepted sentence'
+      end
     end
   end
 end
