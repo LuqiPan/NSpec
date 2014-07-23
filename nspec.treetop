@@ -4,19 +4,23 @@ grammar NSpec
   end
 
   rule parens
-    '(' parens ')' / word
+    S '(' parens ')' S / word
   end
 
   rule word
     [a-zA-Z]+
   end
 
+  rule S
+    [ \t]*
+  end
+
   rule to
-    [ \t]* 'to' [ \t]*
+    S 'to' S
   end
 
   rule match_statement
-    'be ' matcher ' '
+    S 'be' S matcher ' '
   end
 
   rule matcher

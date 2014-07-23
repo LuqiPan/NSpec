@@ -3,12 +3,15 @@ require 'pry'
 Treetop.load 'NSpec'
 
 describe NSpec do
-  describe 'it should load' do
-    it 'works' do
-      parser = NSpecParser.new
-      result = parser.parse('expect(it) to be equal 5')
-      puts result
-      expect(result).to be_a(Treetop::Runtime::SyntaxNode)
-    end
+  let(:parser) { NSpecParser.new }
+
+  it 'parses the sentence without some white spaces' do
+    result = parser.parse('expect(it) to be equal 5')
+    expect(result).to be_a(Treetop::Runtime::SyntaxNode)
+  end
+
+  it 'parse the sentence with white spaces' do
+    result = parser.parse('expect (it) to be equal 5')
+    expect(result).to be_a(Treetop::Runtime::SyntaxNode)
   end
 end
