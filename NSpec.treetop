@@ -4,10 +4,6 @@ grammar NSpec
     'expect' S actual S to S match_statement S expected
   end
 
-  rule parens
-    '(' parens ')' / actual
-  end
-
   rule actual
     variable / numbers
   end
