@@ -1,7 +1,7 @@
 grammar NSpec
   # Top level rule
   rule expect
-    'expect' OS parens OS to OS match_statement OS something
+    'expect' OS parens OS to S match_statement S something
   end
 
   rule something
@@ -29,11 +29,11 @@ grammar NSpec
   end
 
   rule optional_be
-    ('be' OS)?
+    ('be' S)?
   end
 
   rule match_statement
-    optional_be matcher ' '
+    optional_be matcher
   end
 
   rule matcher
