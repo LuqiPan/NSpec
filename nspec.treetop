@@ -1,6 +1,6 @@
 grammar NSpec
   rule expect
-    'expect' parens to matchers
+    'expect' parens to match_statement numbers
   end
 
   rule parens
@@ -15,8 +15,18 @@ grammar NSpec
     [ \t]* 'to' [ \t]*
   end
 
-  rule matchers
+  rule match_statement
+    'be ' matcher ' '
   end
+
+  rule matcher
+    'equal'
+  end
+
+  rule numbers
+    [0-9]+
+  end
+
   rule problems
     word &{ |s| binding.pry; true }
   end
