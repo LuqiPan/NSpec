@@ -16,11 +16,15 @@ grammar NSpec
   end
 
   rule to
-    S 'to' S
+    ('not')? S 'to' S
+  end
+
+  rule be
+    'be'?
   end
 
   rule match_statement
-    S 'be' S matcher ' '
+    S be S matcher ' '
   end
 
   rule matcher
