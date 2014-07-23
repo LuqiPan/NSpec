@@ -1,4 +1,5 @@
 grammar NSpec
+  # Top level rule
   rule expect
     'expect' S parens S to S match_statement S something
   end
@@ -32,7 +33,11 @@ grammar NSpec
   end
 
   rule matcher
-    'equal'
+    equal
+  end
+
+  rule equal
+    'equal' / 'eq'
   end
 
   rule numbers
