@@ -22,19 +22,26 @@ describe NSpec do
 
   describe 'parse the sentence' do
     with_pairs = [
-      ['with white spaces', 'expect it to be equal 5'],
-      ['with not', 'expect it not to be equal 5'],
-      ['with variable containing underscore', 'expect var_ to be equal something'],
-      ['with variable containing number', 'expect var1 to be equal something'],
-      ['with variable containing both underscore and number', 'expect var_1 to be equal s'],
+      ['white spaces', 'expect it to be equal 5'],
+      ['not', 'expect it not to be equal 5'],
+      ['variable containing underscore', 'expect var_ to be equal something'],
+      ['variable containing number', 'expect var1 to be equal something'],
+      ['variable containing both underscore and number', 'expect var_1 to be equal s'],
     ]
     without_pairs = [
-      ['without be', 'expect it not to equal 5'],
-      ['without space after expect', 'expect it to eq 5'],
-      ['without space after actual', 'expect it to eq 5']
+      ['be', 'expect it not to equal 5'],
+      ['space after expect', 'expect it to eq 5'],
+      ['space after actual', 'expect it to eq 5']
     ]
-    (with_pairs + without_pairs).each do |pair|
-      context pair[0] do
+    with_pairs.each do |pair|
+      context "with #{pair[0]}" do
+        subject { pair[1] }
+        it_behaves_like 'an accepted sentence'
+      end
+    end
+
+    without_pairs.each do |pair|
+      context "without #{pair[0]}" do
         subject { pair[1] }
         it_behaves_like 'an accepted sentence'
       end

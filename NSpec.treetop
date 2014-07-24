@@ -1,39 +1,31 @@
 grammar NSpec
   # Top level rule
+  rule expectation
+    expect S actual S prep S match_statement S expected
+  end
+
   rule expect
-    'expect' S actual S to S match_statement S expected
+    'expect'
   end
 
   rule actual
     variable / numbers
   end
 
-  rule expected
-    variable / numbers
-  end
-
-  rule OS #optional space
-    [ \t]*
-  end
-
-  rule S #white spaces
-    [ \t]+
-  end
-
-  rule optional_not
-    ('not' OS)?
-  end
-
-  rule to
-    optional_not 'to'
-  end
-
-  rule optional_be
-    ('be' S)?
+  rule prep
+    to / not_to
   end
 
   rule match_statement
     optional_be (matcher)?
+  end
+
+  rule expected
+    variable / numbers
+  end
+
+  rule optional_be
+    ('be' S)?
   end
 
   rule matcher
@@ -44,6 +36,16 @@ grammar NSpec
     'equal' / 'eq'
   end
 
+  # Preposition
+  rule to
+    'to'
+  end
+
+  rule not_to
+    'not' S 'to'
+  end
+
+  # Primitives
   rule numbers
     [0-9]+
   end
@@ -53,7 +55,16 @@ grammar NSpec
   end
 
   rule variable
-    characters+ (numbers/numbers)*
+    characters+ (characters/numbers)*
+  end
+
+  # White spaces
+  rule OS #optional space
+    [ \t]*
+  end
+
+  rule S #white spaces
+    [ \t]+
   end
 
   rule problems
