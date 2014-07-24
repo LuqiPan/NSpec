@@ -29,7 +29,7 @@ grammar NSpec
   end
 
   rule matcher
-    equal / compare
+    equal / compare / type_and_class
   end
 
   rule equal
@@ -38,6 +38,10 @@ grammar NSpec
 
   rule compare
     '>=' / '<=' / '>' / '<'
+  end
+
+  rule type_and_class
+    'instance' S 'of' / 'kind' S 'of'
   end
 
   # Preposition

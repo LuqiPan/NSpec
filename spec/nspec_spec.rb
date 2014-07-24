@@ -35,6 +35,8 @@ describe NSpec do
       ['comparison: >=', 'expect it to be >= 5'],
       ['comparison: <', 'expect it to be < 5'],
       ['comparison: <=', 'expect it to be <= 5'],
+      ['type/class: instance of', 'expect it to be instance of 5'],
+      ['type/class: kind of', 'expect it to be kind of 5'],
     ]
     without_pairs = [
       ['be', 'expect it not to equal 5'],
