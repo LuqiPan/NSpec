@@ -17,15 +17,15 @@ grammar NSpec
   end
 
   rule match_statement
-    optional_be (matcher)?
+    be (S matcher)? / matcher
   end
 
   rule expected
     variable / numbers
   end
 
-  rule optional_be
-    ('be' S)?
+  rule be
+    'be'
   end
 
   rule matcher

@@ -22,6 +22,7 @@ describe NSpec do
 
   describe 'parse the sentence' do
     with_pairs = [
+      ['identity', 'expect it to be 5'],
       ['white spaces', 'expect it to be equal 5'],
       ['not', 'expect it not to be equal 5'],
       ['variable containing underscore', 'expect var_ to be equal something'],
