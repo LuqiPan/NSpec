@@ -22,11 +22,13 @@ describe NSpec do
 
   describe 'parse the sentence' do
     with_pairs = [
+      # Primitives
       ['basic: white spaces', 'expect it to be equal 5'],
       ['basic: not', 'expect it not to be equal 5'],
       ['variable containing underscore', 'expect var_ to be equal something'],
       ['variable containing number', 'expect var1 to be equal something'],
       ['variable containing both underscore and number', 'expect var_1 to be equal s'],
+      # RSpec syntax
       ['identity', 'expect it to be 5'],
       ['equivalence: eq', 'expect it to eq 5'],
       ['equivalence: eql', 'expect it to eql 5'],
