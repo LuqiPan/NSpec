@@ -33,7 +33,7 @@ grammar NSpec
   end
 
   rule equal
-    'equal' / 'eq'
+    'equal' / 'eql' / 'eq'
   end
 
   # Preposition
