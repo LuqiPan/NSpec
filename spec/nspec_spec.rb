@@ -31,6 +31,10 @@ describe NSpec do
       ['equivalence: eq', 'expect it to eq 5'],
       ['equivalence: eql', 'expect it to eql 5'],
       ['equivalence: equal', 'expect it to equal 5'],
+      ['comparison: >', 'expect it to be > 5'],
+      ['comparison: >=', 'expect it to be >= 5'],
+      ['comparison: <', 'expect it to be < 5'],
+      ['comparison: <=', 'expect it to be <= 5'],
     ]
     without_pairs = [
       ['be', 'expect it not to equal 5'],

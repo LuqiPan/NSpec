@@ -29,11 +29,15 @@ grammar NSpec
   end
 
   rule matcher
-    equal
+    equal / compare
   end
 
   rule equal
     'equal' / 'eql' / 'eq'
+  end
+
+  rule compare
+    '>=' / '<=' / '>' / '<'
   end
 
   # Preposition
