@@ -67,7 +67,7 @@ grammar NSpec
   end
 
   # White spaces
-  rule OS #optional space
+  rule OS #optional spaces
     [ \t]*
   end
 
