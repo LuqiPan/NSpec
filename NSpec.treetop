@@ -1,7 +1,19 @@
 grammar NSpec
   # Top level rule
   rule expectation
-    expect S actual S prep S match_statement S expected
+    expect S actual S prep S match_clause
+  end
+
+  rule match_clause
+    regular_matcher_with_be / regular_matcher_without_be
+  end
+
+  rule regular_matcher_with_be
+    be S matcher S expected / be S expected
+  end
+
+  rule regular_matcher_without_be
+    matcher S expected
   end
 
   rule expect
@@ -14,10 +26,6 @@ grammar NSpec
 
   rule prep
     to / not_to
-  end
-
-  rule match_statement
-    be (S matcher)? / matcher
   end
 
   rule expected
