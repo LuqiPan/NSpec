@@ -5,15 +5,23 @@ grammar NSpec
   end
 
   rule match_clause
-    regular_matcher_with_be / regular_matcher_without_be
+    be_between / regular_match_with_be / regular_match_without_be
   end
 
-  rule regular_matcher_with_be
-    be S matcher S expected / be S expected
+  rule regular_match_with_be
+    be S matcher S expected / identity
   end
 
-  rule regular_matcher_without_be
+  rule regular_match_without_be
     matcher S expected
+  end
+
+  rule be_between
+    be S 'between' S expected S expected S clusivity
+  end
+
+  rule clusivity
+    'inclusive' / 'exclusive'
   end
 
   rule expect
@@ -38,6 +46,10 @@ grammar NSpec
 
   rule matcher
     equal / compare / type_and_class
+  end
+
+  rule identity
+    be S expected
   end
 
   rule equal
