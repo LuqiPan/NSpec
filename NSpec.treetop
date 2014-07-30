@@ -5,16 +5,19 @@ grammar NSpec
   end
 
   rule match_clause
-    #be_between / regular_match_with_be / regular_match_without_be
     match_with_be / match_without_be
   end
 
   rule match_with_be
-    be_between / regular_match_with_be
+    be_between / be_within / regular_match_with_be
+  end
+
+  rule be_within
+    be S 'within' S numbers S 'of' S expected
   end
 
   rule match_without_be
-    regular_match_without_be / match_expression 
+    regular_match_without_be / match_expression
   end
 
   rule match_expression
