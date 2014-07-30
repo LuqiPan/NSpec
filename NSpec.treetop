@@ -14,7 +14,11 @@ grammar NSpec
   end
 
   rule match_without_be
-    regular_match_without_be
+    regular_match_without_be / match_expression 
+  end
+
+  rule match_expression
+    'match' S expected
   end
 
   rule regular_match_with_be

@@ -39,6 +39,7 @@ describe NSpec do
       ['comparison: <=', 'expect it to be <= 5'],
       ['comparison: between inclusive', 'expect it to be between 1 5 inclusive'],
       ['comparison: between exclusive', 'expect it to be between 1 5 exclusive'],
+      ['comparison: match', 'expect it to match regex'],
       ['type/class: instance of', 'expect it to be instance of 5'],
       ['type/class: kind of', 'expect it to be kind of 5'],
     ]
