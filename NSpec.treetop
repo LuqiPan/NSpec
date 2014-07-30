@@ -12,12 +12,20 @@ grammar NSpec
     be_between / be_within / regular_match_with_be
   end
 
-  rule be_within
-    be S 'within' S numbers S 'of' S expected
+  rule match_without_be
+    regular_match_without_be / match_expression / bound / response
   end
 
-  rule match_without_be
-    regular_match_without_be / match_expression
+  rule response
+    'respond' S 'to' S expected
+  end
+
+  rule bound
+    ('start' / 'end') S 'with' S expected
+  end
+
+  rule be_within
+    be S 'within' S numbers S 'of' S expected
   end
 
   rule match_expression

@@ -41,8 +41,11 @@ describe NSpec do
       ['comparison: between exclusive', 'expect it to be between 1 5 exclusive'],
       ['comparison: match', 'expect it to match regex'],
       ['comparison: within', 'expect it to be within 1 of 5'],
+      ['comparison: start with', 'expect it to start with 1'],
+      ['comparison: end with', 'expect it to end with 1'],
       ['type/class: instance of', 'expect it to be instance of 5'],
       ['type/class: kind of', 'expect it to be kind of 5'],
+      ['response: respond to', 'expect it to respond to method'],
     ]
     without_pairs = [
       ['be', 'expect it not to equal 5'],
