@@ -46,6 +46,7 @@ describe NSpec do
       ['type/class: instance of', 'expect it to be instance of 5'],
       ['type/class: kind of', 'expect it to be kind of 5'],
       ['response: respond to', 'expect it to respond to method'],
+      # TODO: it also matches the identity, so check it later
       ['truthiness: truthy', 'expect it to be truthy'],
       ['truthiness: falsey', 'expect it to be falsey'],
     ]
