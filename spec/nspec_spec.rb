@@ -51,6 +51,8 @@ describe NSpec do
       ['truthiness: falsey', 'expect it to be falsey'],
       ['existence: exist', 'expect it to exist'],
       ['errors: raise error', 'expect it to raise error'],
+      ['throw: throw symbol', 'expect it to throw symbol'],
+      ['predicate: have', 'expect it to have something'],
     ]
     without_pairs = [
       ['be', 'expect it not to equal 5'],
