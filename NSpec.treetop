@@ -12,16 +12,30 @@ grammar NSpec
     be_between / be_within / be_truthy / be_falsey / regular_match_with_be
   end
 
-  rule existence
-    'exist'
+  rule match_without_be
+    existence / raise_error / throw_symbol / predicate / regular_match_without_be / match_expression / bound / response
+  end
+
+  # match with be rules
+  rule be_between
+    be S 'between' S expected S expected S clusivity
+  end
+
+  rule be_within
+    be S 'within' S numbers S 'of' S expected
+  end
+
+  rule be_truthy
+    be S 'truthy'
   end
 
   rule be_falsey
     be S 'falsey'
   end
 
-  rule be_truthy
-    be S 'truthy'
+  # match without be rules
+  rule existence
+    'exist'
   end
 
   rule raise_error
@@ -36,20 +50,12 @@ grammar NSpec
     'have' S variable
   end
 
-  rule match_without_be
-    existence / raise_error / throw_symbol / predicate / regular_match_without_be / match_expression / bound / response
-  end
-
   rule response
     'respond' S 'to' S expected
   end
 
   rule bound
     ('start' / 'end') S 'with' S expected
-  end
-
-  rule be_within
-    be S 'within' S numbers S 'of' S expected
   end
 
   rule match_expression
@@ -62,10 +68,6 @@ grammar NSpec
 
   rule regular_match_without_be
     matcher S expected
-  end
-
-  rule be_between
-    be S 'between' S expected S expected S clusivity
   end
 
   rule clusivity
