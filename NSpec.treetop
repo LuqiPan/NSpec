@@ -9,7 +9,15 @@ grammar NSpec
   end
 
   rule match_with_be
-    be_between / be_within / regular_match_with_be
+    be_between / be_within / be_truthy / be_falsey / regular_match_with_be
+  end
+
+  rule be_falsey
+    be S 'falsey'
+  end
+
+  rule be_truthy
+    be S 'truthy'
   end
 
   rule match_without_be
