@@ -49,6 +49,8 @@ describe NSpec do
       # TODO: it also matches the identity, so check it later
       ['truthiness: truthy', 'expect it to be truthy'],
       ['truthiness: falsey', 'expect it to be falsey'],
+      ['existence: exist', 'expect it to exist'],
+      ['errors: raise error', 'expect it to raise error'],
     ]
     without_pairs = [
       ['be', 'expect it not to equal 5'],

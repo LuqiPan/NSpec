@@ -8,6 +8,10 @@ grammar NSpec
     match_with_be / match_without_be
   end
 
+  rule existence
+    'exist'
+  end
+
   rule match_with_be
     be_between / be_within / be_truthy / be_falsey / regular_match_with_be
   end
@@ -20,8 +24,12 @@ grammar NSpec
     be S 'truthy'
   end
 
+  rule raise_error
+    'raise' S 'error'
+  end
+
   rule match_without_be
-    regular_match_without_be / match_expression / bound / response
+    existence / raise_error / regular_match_without_be / match_expression / bound / response
   end
 
   rule response
