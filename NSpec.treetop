@@ -13,12 +13,16 @@ grammar NSpec
   end
 
   rule match_without_be
-    existence / raise_error / throw_symbol / predicate / regular_match_without_be / match_expression / bound / response
+    existence / raise_error / throw_symbol / predicate / match_expression / bound / response / regular_match_without_be
   end
 
   # match with be rules
   rule be_between
     be S 'between' S expected S expected S clusivity
+  end
+
+  rule clusivity
+    'inclusive' / 'exclusive'
   end
 
   rule be_within
@@ -37,6 +41,27 @@ grammar NSpec
     be S matcher S expected / identity
   end
 
+  rule matcher
+    equal / compare / type_and_class
+  end
+
+  rule equal
+    'equal' / 'eql' / 'eq'
+  end
+
+  rule compare
+    '>=' / '<=' / '>' / '<'
+  end
+
+  rule type_and_class
+    'instance' S 'of' / 'kind' S 'of'
+  end
+
+  rule identity
+    be S expected
+  end
+  # END match with be rules
+
   # match without be rules
   rule existence
     'exist'
@@ -54,26 +79,24 @@ grammar NSpec
     'have' S variable
   end
 
-  rule response
-    'respond' S 'to' S expected
+  rule match_expression
+    'match' S expected
   end
 
   rule bound
     ('start' / 'end') S 'with' S expected
   end
 
-  rule match_expression
-    'match' S expected
-  end
-
-  rule clusivity
-    'inclusive' / 'exclusive'
+  rule response
+    'respond' S 'to' S expected
   end
 
   rule regular_match_without_be
     matcher S expected
   end
+  # END match without be rules
 
+  # simple token
   rule expect
     'expect'
   end
@@ -92,26 +115,6 @@ grammar NSpec
 
   rule be
     'be'
-  end
-
-  rule matcher
-    equal / compare / type_and_class
-  end
-
-  rule identity
-    be S expected
-  end
-
-  rule equal
-    'equal' / 'eql' / 'eq'
-  end
-
-  rule compare
-    '>=' / '<=' / '>' / '<'
-  end
-
-  rule type_and_class
-    'instance' S 'of' / 'kind' S 'of'
   end
 
   # Preposition
