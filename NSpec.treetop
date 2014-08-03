@@ -11,16 +11,37 @@ grammar NSpec
   end
 
   rule match_clause
-    match_with_be / match_without_be
+    match_with_be / match_without_be {
+      def transform
+        elements.map do |e|
+          (e.respond_to? :transform) ? e.transform : e.text_value
+        end.join
+      end
+    }
+
   end
 
   rule match_with_be
-    be_between / be_within / be_truthy / be_falsey / regular_match_with_be
+    be_between / be_within / be_truthy / be_falsey / regular_match_with_be {
+      def transform
+        elements.map do |e|
+          (e.respond_to? :transform) ? e.transform : e.text_value
+        end.join
+      end
+    }
+
   end
 
   rule match_without_be
     existence / raise_error / throw_symbol / predicate / match_expression /
-      bound / response / regular_match_without_be
+      bound / response / regular_match_without_be {
+      def transform
+        elements.map do |e|
+          (e.respond_to? :transform) ? e.transform : e.text_value
+        end.join
+      end
+    }
+
   end
 
   # match with be rules
@@ -121,16 +142,28 @@ grammar NSpec
   end
 
   rule expected
-    variable / numbers
+    variable / numbers {
+      def transform
+        "(#{text_value})"
+      end
+    }
   end
 
   rule be
-    'be'
+    'be' {
+      def transform
+        ' be'
+      end
+    }
   end
 
   # Preposition
   rule to
-    'to'
+    'to' {
+      def transform
+        '.to'
+      end
+    }
   end
 
   rule not_to
