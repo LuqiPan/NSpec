@@ -3,16 +3,16 @@ require 'pry'
 Treetop.load 'NSpec'
 
 class NSpecRewriter
-  def inititialize
-    parser = NSpecParser.new
+  def initialize
+    @nspec_parser = NSpecParser.new
   end
 
   def parse(sentence)
-    parser.parse(sentence)
+    @nspec_parser.parse(sentence)
   end
 
   def parse_to_s(sentence)
     ast = parse(sentence)
-    ast.to_s
+    binding.pry
   end
 end
