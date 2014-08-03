@@ -88,9 +88,12 @@ describe NSpec do
   describe 'transform the sentence' do
     examples = [
       ['identity', 'expect it to be 5', 'expect(it).to be(5)'],
+      ['equivalence: eq', 'expect it to eq 5', 'expect(it).to eq(5)'],
+      ['equivalence: eql', 'expect it to eql 5', 'expect(it).to eql(5)'],
+      ['equivalence: equal', 'expect it to equal 5', 'expect(it).to equal(5)'],
     ]
     examples.each do |example|
-      it "transforms #{example[0]}" do
+      it "transforms #{example[1]}" do
         expect(parser.parse(example[1]).transform).to eq example[2]
       end
     end

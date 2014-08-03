@@ -74,7 +74,11 @@ grammar NSpec
   end
 
   rule equal
-    'equal' / 'eql' / 'eq'
+    'equal' / 'eql' / 'eq' {
+      def transform
+        " #{text_value}"
+      end
+    }
   end
 
   rule compare
