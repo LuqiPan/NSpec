@@ -13,7 +13,8 @@ grammar NSpec
   end
 
   rule match_without_be
-    existence / raise_error / throw_symbol / predicate / match_expression / bound / response / regular_match_without_be
+    existence / raise_error / throw_symbol / predicate / match_expression /
+      bound / response / regular_match_without_be
   end
 
   # match with be rules
