@@ -162,8 +162,4 @@ grammar NSpec
       end
     }
   end
-
-  rule problems
-    word &{ |s| binding.pry; true }
-  end
 end
