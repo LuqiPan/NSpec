@@ -23,6 +23,7 @@ describe NSpec do
   describe 'parse the sentence' do
     with_pairs = [
       # Primitives
+      # [describe string, NSpec syntax example]
       ['basic: white spaces', 'expect it to be equal 5'],
       ['basic: not', 'expect it not to be equal 5'],
       ['variable containing underscore', 'expect var_ to be equal something'],

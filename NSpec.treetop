@@ -1,7 +1,13 @@
 grammar NSpec
   # Top level rule
   rule expectation
-    expect S actual S prep S match_clause
+    expect S actual S prep S match_clause {
+      def transform
+        elements.map do |e|
+          (e.respond_to? :transform) ? e.transform : e.text_value
+        end.join
+      end
+    }
   end
 
   rule match_clause
@@ -103,7 +109,11 @@ grammar NSpec
   end
 
   rule actual
-    variable / numbers
+    (variable / numbers) {
+      def transform
+        "(#{text_value})"
+      end
+    }
   end
 
   rule prep
@@ -146,7 +156,11 @@ grammar NSpec
   end
 
   rule S #white spaces
-    [ \t]+
+    [ \t]+ {
+      def transform
+        ''
+      end
+    }
   end
 
   rule problems
