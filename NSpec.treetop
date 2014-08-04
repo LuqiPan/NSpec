@@ -3,6 +3,7 @@ grammar NSpec
   rule expectation
     expect S actual S prep S match_clause {
       def transform
+        elements.each{ |e| puts e.text_value }
         elements.map do |e|
           (e.respond_to? :transform) ? e.transform : e.text_value
         end.join
@@ -11,8 +12,9 @@ grammar NSpec
   end
 
   rule match_clause
-    match_with_be / match_without_be {
+    match_without_be / match_with_be  {
       def transform
+
         elements.map do |e|
           (e.respond_to? :transform) ? e.transform : e.text_value
         end.join
@@ -124,7 +126,11 @@ grammar NSpec
   end
 
   rule regular_match_without_be
-    matcher S expected
+    equal S expected {
+      def transform
+        binding.pry
+      end
+    }
   end
   # END match without be rules
 

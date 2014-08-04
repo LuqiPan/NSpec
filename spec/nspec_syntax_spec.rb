@@ -1,5 +1,6 @@
 require 'treetop'
 require 'pry'
+require 'pry-nav'
 require 'spec_helper'
 Treetop.load 'NSpec'
 
@@ -94,6 +95,7 @@ describe NSpec do
     ]
     examples.each do |example|
       it "transforms #{example[1]}" do
+        #puts parser.parse(example[1]).inspect
         expect(parser.parse(example[1]).transform).to eq example[2]
       end
     end

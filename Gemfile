@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'pry'
+gem 'pry-nav'
 gem 'rspec-core'
 gem 'rspec-mocks'
 gem 'rspec-expectations'
