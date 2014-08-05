@@ -25,39 +25,39 @@ describe NSpec do
     with_pairs = [
       # Primitives
       # [describe string, NSpec syntax example]
-      ['basic: white spaces', 'expect it to be equal 5'],
-      ['basic: not', 'expect it not to be equal 5'],
+      ['basic: white spaces', 'expect actual to be equal 5'],
+      ['basic: not', 'expect actual not to be equal 5'],
       ['variable containing underscore', 'expect var_ to be equal something'],
       ['variable containing number', 'expect var1 to be equal something'],
       ['variable containing both underscore and number', 'expect var_1 to be equal s'],
       # RSpec syntax
-      ['identity', 'expect it to be 5'],
-      ['equivalence: eq', 'expect it to eq 5'],
-      ['equivalence: eql', 'expect it to eql 5'],
-      ['equivalence: equal', 'expect it to equal 5'],
-      ['comparison: >', 'expect it to be > 5'],
-      ['comparison: >=', 'expect it to be >= 5'],
-      ['comparison: <', 'expect it to be < 5'],
-      ['comparison: <=', 'expect it to be <= 5'],
-      ['comparison: between inclusive', 'expect it to be between 1 5 inclusive'],
-      ['comparison: between exclusive', 'expect it to be between 1 5 exclusive'],
-      ['comparison: match', 'expect it to match regex'],
-      ['comparison: within', 'expect it to be within 1 of 5'],
-      ['comparison: start with', 'expect it to start with 1'],
-      ['comparison: end with', 'expect it to end with 1'],
-      ['type/class: instance of', 'expect it to be instance of 5'],
-      ['type/class: kind of', 'expect it to be kind of 5'],
-      ['response: respond to', 'expect it to respond to method'],
+      ['identity', 'expect actual to be 5'],
+      ['equivalence: eq', 'expect actual to eq 5'],
+      ['equivalence: eql', 'expect actual to eql 5'],
+      ['equivalence: equal', 'expect actual to equal 5'],
+      ['comparison: >', 'expect actual to be > 5'],
+      ['comparison: >=', 'expect actual to be >= 5'],
+      ['comparison: <', 'expect actual to be < 5'],
+      ['comparison: <=', 'expect actual to be <= 5'],
+      ['comparison: between inclusive', 'expect actual to be between 1 5 inclusive'],
+      ['comparison: between exclusive', 'expect actual to be between 1 5 exclusive'],
+      ['comparison: match', 'expect actual to match regex'],
+      ['comparison: within', 'expect actual to be within 1 of 5'],
+      ['comparison: start with', 'expect actual to start with 1'],
+      ['comparison: end with', 'expect actual to end with 1'],
+      ['type/class: instance of', 'expect actual to be instance of 5'],
+      ['type/class: kind of', 'expect actual to be kind of 5'],
+      ['response: respond to', 'expect actual to respond to method'],
       # TODO: it also matches the identity, so check it later
-      ['truthiness: truthy', 'expect it to be truthy'],
-      ['truthiness: falsey', 'expect it to be falsey'],
-      ['existence: exist', 'expect it to exist'],
-      ['errors: raise error', 'expect it to raise error'],
-      ['throw: throw symbol', 'expect it to throw symbol'],
-      ['predicate: have', 'expect it to have something'],
+      ['truthiness: truthy', 'expect actual to be truthy'],
+      ['truthiness: falsey', 'expect actual to be falsey'],
+      ['existence: exist', 'expect actual to exist'],
+      ['errors: raise error', 'expect actual to raise error'],
+      ['throw: throw symbol', 'expect actual to throw symbol'],
+      ['predicate: have', 'expect actual to have something'],
     ]
     without_pairs = [
-      ['be', 'expect it not to equal 5'],
+      ['be', 'expect actual not to equal 5'],
     ]
     with_pairs.each do |pair|
       context "with #{pair[0]}" do
@@ -76,7 +76,7 @@ describe NSpec do
 
   describe "doesn't parse the sentence" do
     pairs = [
-      ['with 2 nots', 'expect it not not to be equal 5']
+      ['with 2 nots', 'expect actual not not to be equal 5']
     ]
     pairs.each do |pair|
       context pair[0] do
@@ -88,10 +88,10 @@ describe NSpec do
 
   describe 'transform the sentence' do
     examples = [
-      ['identity', 'expect it to be 5', 'expect(it).to be(5)'],
-      ['equivalence: eq', 'expect it to eq 5', 'expect(it).to eq(5)'],
-      ['equivalence: eql', 'expect it to eql 5', 'expect(it).to eql(5)'],
-      ['equivalence: equal', 'expect it to equal 5', 'expect(it).to equal(5)'],
+      ['identity', 'expect actual to be 5', 'expect(actual).to be(5)'],
+      ['equivalence: eq', 'expect actual to eq 5', 'expect(actual).to eq(5)'],
+      ['equivalence: eql', 'expect actual to eql 5', 'expect(actual).to eql(5)'],
+      ['equivalence: equal', 'expect actual to equal 5', 'expect(actual).to equal(5)'],
     ]
     examples.each do |example|
       it "transforms #{example[1]}" do
