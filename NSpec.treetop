@@ -2,9 +2,9 @@ grammar NSpec
   # Top level rule
   rule expectation
     expect S actual S prep S match_clause {
-      def transform
+      def rewrite
         elements.map do |e|
-          (e.respond_to? :transform) ? e.transform : e.text_value
+          (e.respond_to? :rewrite) ? e.rewrite : e.text_value
         end.join
       end
     }
@@ -12,9 +12,9 @@ grammar NSpec
 
   rule match_clause
     (match_without_be / match_with_be)  {
-      def transform
+      def rewrite
         elements.map do |e|
-          (e.respond_to? :transform) ? e.transform : e.text_value
+          (e.respond_to? :rewrite) ? e.rewrite : e.text_value
         end.join
       end
     }
@@ -23,9 +23,9 @@ grammar NSpec
 
   rule match_with_be
     (be_between / be_within / be_truthy / be_falsey / regular_match_with_be) {
-      def transform
+      def rewrite
         elements.map do |e|
-          (e.respond_to? :transform) ? e.transform : e.text_value
+          (e.respond_to? :rewrite) ? e.rewrite : e.text_value
         end.join
       end
     }
@@ -35,9 +35,9 @@ grammar NSpec
   rule match_without_be
     (existence / raise_error / throw_symbol / predicate / match_expression /
       bound / response / regular_match_without_be) {
-      def transform
+      def rewrite
         elements.map do |e|
-          (e.respond_to? :transform) ? e.transform : e.text_value
+          (e.respond_to? :rewrite) ? e.rewrite : e.text_value
         end.join
       end
     }
@@ -66,23 +66,37 @@ grammar NSpec
   end
 
   rule regular_match_with_be
-    (be S matcher S expected / identity)
+    (be S matcher S expected / compare_clause / identity)
   end
 
   rule matcher
-    (equal / compare / type_and_class)
+    (equal / type_and_class)
   end
 
   rule equal
     ('equal' / 'eql' / 'eq') {
-      def transform
+      def rewrite
         " #{text_value}"
       end
     }
   end
 
+  rule compare_clause
+    be S compare S expected_no_paren {
+      def rewrite
+        elements.map do |e|
+          (e.respond_to? :rewrite) ? e.rewrite : e.text_value
+        end.join
+      end
+    }
+  end
+
   rule compare
-    ('>=' / '<=' / '>' / '<')
+    ('>=' / '<=' / '>' / '<') {
+      def rewrite
+        " #{text_value}"
+      end
+    }
   end
 
   rule type_and_class
@@ -125,9 +139,9 @@ grammar NSpec
 
   rule regular_match_without_be
     equal S expected {
-      def transform
+      def rewrite
         elements.map do |e|
-          (e.respond_to? :transform) ? e.transform : e.text_value
+          (e.respond_to? :rewrite) ? e.rewrite : e.text_value
         end.join
       end
     }
@@ -139,30 +153,38 @@ grammar NSpec
     'expect'
   end
 
-  rule actual
-    (variable / numbers) {
-      def transform
-        "(#{text_value})"
-      end
-    }
-  end
-
   rule prep
     (to / not_to)
   end
 
-  rule expected
-    variable / numbers {
-      def transform
+  rule be
+    'be' {
+      def rewrite
+        ' be'
+      end
+    }
+  end
+
+  rule actual
+    (variable / numbers) {
+      def rewrite
         "(#{text_value})"
       end
     }
   end
 
-  rule be
-    'be' {
-      def transform
-        ' be'
+  rule expected
+    variable / numbers {
+      def rewrite
+        "(#{text_value})"
+      end
+    }
+  end
+
+  rule expected_no_paren
+    variable / numbers {
+      def rewrite
+        " #{text_value}"
       end
     }
   end
@@ -170,7 +192,7 @@ grammar NSpec
   # Preposition
   rule to
     'to' {
-      def transform
+      def rewrite
         '.to'
       end
     }
@@ -178,7 +200,7 @@ grammar NSpec
 
   rule not_to
     'not' S 'to' {
-      def transform
+      def rewrite
         '.not_to'
       end
     }
@@ -204,7 +226,7 @@ grammar NSpec
 
   rule S #white spaces
     [ \t]+ {
-      def transform
+      def rewrite
         ''
       end
     }

@@ -86,17 +86,21 @@ describe NSpec do
     end
   end
 
-  describe 'transform the sentence' do
+  describe 'rewrite the sentence' do
     examples = [
       ['identity', 'expect actual to be 5', 'expect(actual).to be(5)'],
       ['equivalence: eq', 'expect actual to eq 5', 'expect(actual).to eq(5)'],
       ['equivalence: eql', 'expect actual to eql 5', 'expect(actual).to eql(5)'],
       ['equivalence: equal', 'expect actual to equal 5', 'expect(actual).to equal(5)'],
+      ['comparison: >', 'expect actual to be > 5', 'expect(actual).to be > 5'],
+      ['comparison: >=', 'expect actual to be >= 5', 'expect(actual).to be >= 5'],
+      ['comparison: <', 'expect actual to be < 5', 'expect(actual).to be < 5'],
+      ['comparison: <=', 'expect actual to be <= 5', 'expect(actual).to be <= 5'],
     ]
     examples.each do |example|
-      it "transforms #{example[1]}" do
+      it "rewrites #{example[1]}" do
         #puts parser.parse(example[1]).inspect
-        expect(parser.parse(example[1]).transform).to eq example[2]
+        expect(parser.parse(example[1]).rewrite).to eq example[2]
       end
     end
   end
