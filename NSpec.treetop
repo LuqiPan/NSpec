@@ -94,7 +94,7 @@ grammar NSpec
   rule compare
     ('>=' / '<=' / '>' / '<') {
       def rewrite
-        " #{text_value}"
+        " #{text_value} "
       end
     }
   end
@@ -182,11 +182,7 @@ grammar NSpec
   end
 
   rule expected_no_paren
-    variable / numbers {
-      def rewrite
-        " #{text_value}"
-      end
-    }
+    variable / numbers
   end
 
   # Preposition
