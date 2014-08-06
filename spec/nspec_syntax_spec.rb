@@ -22,7 +22,7 @@ describe NSpec do
   let(:parser) { NSpecParser.new }
 
   describe 'parse the sentence' do
-    with_pairs = [
+    with_examples = [
       # Primitives
       # [describe string, NSpec syntax example]
       ['basic: white spaces', 'expect actual to be equal 5'],
@@ -56,31 +56,31 @@ describe NSpec do
       ['throw: throw symbol', 'expect actual to throw symbol'],
       ['predicate: have', 'expect actual to have something'],
     ]
-    without_pairs = [
+    without_examples = [
       ['be', 'expect actual not to equal 5'],
     ]
-    with_pairs.each do |pair|
-      context "with #{pair[0]}" do
-        subject { pair[1] }
+    with_examples.each do |example|
+      context "with #{example[0]}" do
+        subject { example[1] }
         it_behaves_like 'an accepted sentence'
       end
     end
 
-    without_pairs.each do |pair|
-      context "without #{pair[0]}" do
-        subject { pair[1] }
+    without_examples.each do |example|
+      context "without #{example[0]}" do
+        subject { example[1] }
         it_behaves_like 'an accepted sentence'
       end
     end
   end
 
   describe "doesn't parse the sentence" do
-    pairs = [
+    invalid_examples = [
       ['with 2 nots', 'expect actual not not to be equal 5']
     ]
-    pairs.each do |pair|
-      context pair[0] do
-        subject { pair[1] }
+    invalid_examples.each do |example|
+      context example[0] do
+        subject { example[1] }
         it_behaves_like 'a unaccepted sentence'
       end
     end
