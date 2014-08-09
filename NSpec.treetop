@@ -11,20 +11,11 @@ grammar NSpec
   end
 
   rule match_clause
-    (match_without_be / match_with_be) {
-    }
-
+    (match_without_be / match_with_be)
   end
 
   rule match_with_be
-    (be_between / be_within / be_truthy / be_falsey / regular_match_with_be) {
-      def rewrite
-        elements.map do |e|
-          (e.respond_to? :rewrite) ? e.rewrite : e.text_value
-        end.join
-      end
-    }
-
+    (be_between / be_within / be_truthy / be_falsey / regular_match_with_be)
   end
 
   rule match_without_be
@@ -96,7 +87,11 @@ grammar NSpec
   end
 
   rule identity
-    be S expected
+    be S expected {
+      def rewrite
+        " be(#{elements.last.text_value})"
+      end
+    }
   end
   # END match with be rules
 
@@ -126,11 +121,7 @@ grammar NSpec
   end
 
   rule match_keyword
-    'match' {
-      def rewrite
-        ' match'
-      end
-    }
+    'match'
   end
 
   rule bound
