@@ -96,6 +96,7 @@ describe NSpec do
       ['comparison: >=', 'expect actual to be >= 5', 'expect(actual).to be >= 5'],
       ['comparison: <', 'expect actual to be < 5', 'expect(actual).to be < 5'],
       ['comparison: <=', 'expect actual to be <= 5', 'expect(actual).to be <= 5'],
+      ['comparison: match', 'expect actual to match regex', 'expect(actual).to match(regex)'],
     ]
     examples.each do |example|
       it "rewrites #{example[1]}" do
