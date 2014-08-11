@@ -125,7 +125,11 @@ grammar NSpec
   end
 
   rule bound
-    ('start' / 'end') S 'with' S expected
+    ('start' / 'end') S 'with' S expected {
+      def rewrite
+        " #{elements.first.text_value}_with #{elements.last.text_value}"
+      end
+    }
   end
 
   rule response
