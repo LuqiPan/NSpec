@@ -130,7 +130,11 @@ grammar NSpec
   end
 
   rule raise_error
-    'raise' S 'error'
+    'raise' S 'error' {
+      def rewrite
+        ' raise_error'
+      end
+    }
   end
 
   rule throw_symbol
