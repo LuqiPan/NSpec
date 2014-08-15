@@ -102,6 +102,8 @@ describe NSpec do
       ['type/class: instance of', 'expect actual to be instance of 5', 'expect(actual).to be_instance_of(5)'],
       ['type/class: kind of', 'expect actual to be kind of 5', 'expect(actual).to be_kind_of(5)'],
       ['response: respond to', 'expect actual to respond to method', 'expect(actual).to respond_to(method)'],
+      ['truthiness: truthy', 'expect actual to be truthy', 'expect(actual).to be_truthy'],
+      ['truthiness: falsey', 'expect actual to be falsey', 'expect(actual).to be_falsey'],
     ]
     examples.each do |example|
       it "rewrites #{example[1]}" do

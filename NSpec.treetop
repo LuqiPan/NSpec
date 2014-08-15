@@ -41,11 +41,19 @@ grammar NSpec
   end
 
   rule be_truthy
-    be S 'truthy'
+    be S 'truthy' {
+      def rewrite
+        ' be_truthy'
+      end
+    }
   end
 
   rule be_falsey
-    be S 'falsey'
+    be S 'falsey' {
+      def rewrite
+        ' be_falsey'
+      end
+    }
   end
 
   rule regular_match_with_be
