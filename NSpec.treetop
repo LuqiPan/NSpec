@@ -138,7 +138,11 @@ grammar NSpec
   end
 
   rule throw_symbol
-    'throw' S 'symbol'
+    'throw' S 'symbol' {
+      def rewrite
+        ' throw_symbol'
+      end
+    }
   end
 
   rule predicate

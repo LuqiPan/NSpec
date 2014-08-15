@@ -106,6 +106,7 @@ describe NSpec do
       ['truthiness: falsey', 'expect actual to be falsey', 'expect(actual).to be_falsey'],
       ['existence: exist', 'expect actual to exist', 'expect(actual).to exist'],
       ['errors: raise error', 'expect actual to raise error', 'expect(actual).to raise_error'],
+      ['throw: throw symbol', 'expect actual to throw symbol', 'expect(actual).to throw_symbol'],
     ]
     examples.each do |example|
       it "rewrites #{example[1]}" do
