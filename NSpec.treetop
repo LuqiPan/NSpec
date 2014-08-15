@@ -150,7 +150,11 @@ grammar NSpec
   end
 
   rule response
-    'respond' S 'to' S expected
+    'respond' S 'to' S expected {
+      def rewrite
+        " respond_to(#{elements.last.text_value})"
+      end
+    }
   end
 
   rule regular_match_without_be

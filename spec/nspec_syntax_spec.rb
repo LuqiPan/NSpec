@@ -101,6 +101,7 @@ describe NSpec do
       ['comparison: end with', 'expect actual to end with 1', 'expect(actual).to end_with 1'],
       ['type/class: instance of', 'expect actual to be instance of 5', 'expect(actual).to be_instance_of(5)'],
       ['type/class: kind of', 'expect actual to be kind of 5', 'expect(actual).to be_kind_of(5)'],
+      ['response: respond to', 'expect actual to respond to method', 'expect(actual).to respond_to(method)'],
     ]
     examples.each do |example|
       it "rewrites #{example[1]}" do
