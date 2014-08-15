@@ -104,6 +104,7 @@ describe NSpec do
       ['response: respond to', 'expect actual to respond to method', 'expect(actual).to respond_to(method)'],
       ['truthiness: truthy', 'expect actual to be truthy', 'expect(actual).to be_truthy'],
       ['truthiness: falsey', 'expect actual to be falsey', 'expect(actual).to be_falsey'],
+      ['existence: exist', 'expect actual to exist', 'expect(actual).to exist'],
     ]
     examples.each do |example|
       it "rewrites #{example[1]}" do

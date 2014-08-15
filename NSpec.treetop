@@ -122,7 +122,11 @@ grammar NSpec
 
   # match without be rules
   rule existence
-    'exist'
+    'exist' {
+      def rewrite
+        ' exist'
+      end
+    }
   end
 
   rule raise_error
