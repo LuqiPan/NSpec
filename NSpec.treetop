@@ -49,11 +49,11 @@ grammar NSpec
   end
 
   rule regular_match_with_be
-    (be S matcher S expected / compare_clause / identity)
+    (be_equal / be_type_and_class / compare_clause / identity)
   end
 
-  rule matcher
-    (equal / type_and_class)
+  rule be_equal
+    be S equal S expected
   end
 
   rule equal
@@ -82,8 +82,25 @@ grammar NSpec
     }
   end
 
+  rule be_type_and_class
+    be S type_and_class S expected {
+      def rewrite
+        " be_#{elements[2].rewrite}(#{elements.last.text_value})"
+      end
+    }
+  end
+
   rule type_and_class
-    ('instance' S 'of' / 'kind' S 'of')
+    'instance' S 'of' {
+      def rewrite
+        "instance_of"
+      end
+    }
+    / 'kind' S 'of' {
+      def rewrite
+        "kind_of"
+      end
+    }
   end
 
   rule identity

@@ -99,7 +99,8 @@ describe NSpec do
       ['comparison: match', 'expect actual to match regex', 'expect(actual).to match(regex)'],
       ['comparison: start with', 'expect actual to start with 1', 'expect(actual).to start_with 1'],
       ['comparison: end with', 'expect actual to end with 1', 'expect(actual).to end_with 1'],
-      #['type/class: instance of', 'expect actual to be instance of 5', 'expect(actual).to be_instance_of(5)'],
+      ['type/class: instance of', 'expect actual to be instance of 5', 'expect(actual).to be_instance_of(5)'],
+      ['type/class: kind of', 'expect actual to be kind of 5', 'expect(actual).to be_kind_of(5)'],
     ]
     examples.each do |example|
       it "rewrites #{example[1]}" do
